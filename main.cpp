@@ -3,28 +3,96 @@
 
 using namespace std;
 
-int main()
+//implementaion of stack
+class stackx
 {
- //creation of stack
- stack<int>s;
- //pushing element//
- s.push(4);
- s.push(5);
- //popping element//
- s.pop();
- cout<<"printing top element "<<s.top()<<endl;
- //checking stack is empty or not
- if(s.empty())
- {
-     cout<<"stack is empty"<<endl;
- }
- //
- else{
-    cout<<"stack is not empty"<<endl;
- }
- //returini g size of stack//
- cout<<"size of stack is"<< s.size()<<endl;
- //we can implement many more operation using stack
- return 0;
+    public:
+    int sizex;
+    int top;
+    int *arr;
+    //implementing  constructor function //
+    stackx(int sizex)
+    {
+        this->sizex=sizex;
+        int top=-1;
+        //CREATING ARRAY DYNAMICALLY//
+        arr=new int[sizex];
+
+    }
+    void push(int element)
+    {
+        if(sizex-top>1)
+        {
+            top++;
+            arr[top]=element;
+        }
+        else
+            cout<<"stack is overflow"<<endl;
+    }
+    void pop()
+    {
+        if(top>=0)
+        {
+            top--;
+
+        }
+        else
+        {
+            cout<<"stack is underflow"<<endl;
+        }
+    }
+    int peek()
+    {
+        if(top>=0)
+        {
+            return arr[top];
+
+        }
+        else{
+            cout<<"stack is empty"<<endl;
+            return 0;
+        }
+    }
+    bool isempty()
+    {
+    if(top==-1)
+        {
+        return true;
+        }
+    else
+    {
+        return false;
+    }
+    }
+
+};
+int main()
+{//creation of stack;
+    stackx st(5);
+    st.push(23);
+    st.push(29);
+    st.push(34);
+    st.push(56);
+    st.push(36);
+    st.push(34);
+//returning top elemenet//
+    cout<<st.peek()<<endl;
+    st.pop();
+    cout<<st.peek()<<endl;
+    st.pop();
+    cout<<st.peek()<<endl;
+    st.pop();
+    cout<<st.peek()<<endl;
+    st.pop();
+    cout<<st.peek()<<endl;
+    st.pop();
+    if(st.isempty())
+    {
+
+        cout<<"stack is empty"<<endl;
+    }
+    else{
+        cout<<"stack is not empty "<<endl;
+    }
 
 }
