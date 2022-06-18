@@ -1,37 +1,37 @@
 #include <iostream>
 
 using namespace std;
- int binary_searchx(int arr[],int sizex,int key)
+
+// Recursive approach to check if an
+// Array is sorted or not
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function that returns 0 if a pair
+// is found unsorted
+int arraySortedOrNot(int arr[], int n)
 {
-    int n;
-    int start=0;
-    int endX =sizex-1;
-    int mid=(start+endX)/2;
-    while(start<=endX)
-    {
+    // Array has one or no element or the
+    // rest are already checked and approved.
+    if (n == 1 || n == 0)
+        return 1;
 
-        if(key==arr[mid])
-            return mid;
-        else if(key>arr[mid])
-            start=mid+1;
-        else
-            endX=endX+1;
+    // Unsorted pair found (Equal values allowed)
+    if (arr[n - 1] < arr[n - 2])
+        return 0;
 
-        mid=(start+endX)/2;;
-    }
-    return -1;
-
+    // Last pair was sorted
+    // Keep on checking
+    return arraySortedOrNot(arr, n - 1);
 }
+
+// Driver code
 int main()
 {
-    int arr[5]={4,6,8,9,11};
-    int index=binary_searchx( arr,5,9);
-    cout<<"index"<<index<<endl;
-
+    int arr[] = { 20, 23, 23, 45, 78, 88 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    if (arraySortedOrNot(arr, n))
+        cout << "Yes";
+    else
+        cout << "No";
 }
-
-
-
-
-
-
